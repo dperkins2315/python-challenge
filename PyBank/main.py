@@ -41,19 +41,27 @@ with open(budget_data) as csvfile:
 #Calculate the average of the revenue change
 newvar = revchglist[1:]
 avglist = sum(newvar)/len(newvar) 
-
+avg_str= '${0:,.2f}'.format(avglist)
 #Print the output
 
+print ("Financial Analysis")
+print('-' * 35)
 print("Total Months: " + str(line_ct))
 print("Total: $" + str(total_ct))
-print("Average Change: $" + str(avglist))
+print("Average Change: " + avg_str)
 print("Greatest Increase in Profits: " + (finaldate) + ", " + "($" + str(finalmax) + ")")
 print("Greatest Decrease in Profits: " + (finaldate2) + ", " + "($" + str(finalmin) + ")")
 
 # Specify the file to write to
-output_path = os.path.join("banknew.csv")
+output_path = os.path.join("banknew.txt")
 # Open the file using "write" mode. Specify the variable to hold the contents
 with open(output_path, 'w', newline='') as csvfile:
+  csvfile.write("Financial Analysis" +'\n')
+  csvfile.write('-' * 35 + '\n')
+  csvfile.write("Total Months: " + str(line_ct)+ '\n')
+  csvfile.write("Total: $" + str(total_ct) + '\n')
+  csvfile.write("Average Change: " + avg_str +'\n')
+  csvfile.write("Greatest Increase in Profits: " + (finaldate) + ", " + "($" + str(finalmax) + ")" + '\n')
+  csvfile.write("Greatest Decrease in Profits: " + (finaldate2) + ", " + "($" + str(finalmin) + ")"+ '\n')
 
-   # Initialize csv.writer
-   csvwriter = csv.writer(csvfile, delimiter=',')
+
